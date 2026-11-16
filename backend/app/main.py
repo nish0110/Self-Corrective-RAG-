@@ -36,6 +36,17 @@ app = FastAPI(title="Self-Corrective RAG (CRAG)", version="1.0.0",
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 
 
+@app.on_event("startup")
+def warm_up():
+    """Load the embedding model and open the database once, before any request arrives."""
+    try:
+        store = get_store()
+        log.info("Ready: %s embeddings, %d chunks, LLM %s:%s", store.embedder.name, store.count(),
+                 get_llm().provider, get_llm().model)
+    except Exception:
+        log.exception("startup warm-up failed (the System check page will show details)")
+
+
 @app.exception_handler(Exception)
 async def friendly_errors(request: Request, exc: Exception):
     log.exception("unhandled error on %s", request.url.path)
