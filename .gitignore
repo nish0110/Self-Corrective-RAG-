@@ -5,3 +5,4 @@ __pycache__/
 .env
 backend/storage/
 backend/evaluation/results/
+.DS_Store
