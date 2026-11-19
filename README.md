@@ -130,6 +130,16 @@ Results are saved to `backend/evaluation/results/` (`latest.md`, `latest.csv`, `
 
 All knobs are in `.env`, and most can also be changed live on the Settings page: `UPPER_THRESHOLD` (0.7), `LOWER_THRESHOLD` (0.3), `TOP_K` (4), `MAX_REWRITES` (1), `EVALUATOR_BACKEND`, `ENABLE_REFINEMENT`, `ENABLE_VALIDATION`, `MAX_VALIDATION_RETRIES`, `WEB_SEARCH_PROVIDER`.
 
+### Member 1 handoff
+
+- Copy `backend/.env.example` to `backend/.env`.
+- Set `LLM_PROVIDER=groq` and a newly issued `LLM_API_KEY`; the default model is `openai/gpt-oss-120b`.
+- Set `TAVILY_API_KEY` and `WEB_SEARCH_PROVIDER=tavily`, or use `WEB_SEARCH_PROVIDER=duckduckgo` without a Tavily key.
+- Keep `EMBEDDING_BACKEND=sentence-transformers` and `EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2` for 384-dimensional MiniLM embeddings.
+- `sentence-transformers`, `sentence_transformers`, and `auto` are accepted embedding backend values.
+- Rotate any previously shared Groq or Tavily key in the provider console; do not commit `.env` or paste credentials into source files.
+- Restart the backend after changing provider keys or embedding settings.
+
 ## API
 
 | Method | Path | Purpose |

@@ -94,6 +94,7 @@ class Settings:
         base, model = PROVIDER_DEFAULTS.get(self.llm_provider, ("", ""))
         self.llm_base_url = self.llm_base_url or base
         self.llm_model = self.llm_model or model
+        self.embedding_backend = self.embedding_backend.replace("-", "_")
         if self.web_search_provider == "auto":
             self.web_search_provider = "tavily" if self.tavily_api_key else "duckduckgo"
 
