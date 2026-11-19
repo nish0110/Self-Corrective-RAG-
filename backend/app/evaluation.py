@@ -188,14 +188,14 @@ def run_evaluation(items: Optional[list[dict]] = None, progress: Optional[Callab
 
 def save_report(report: dict) -> Path:
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-    (RESULTS_DIR / "latest.json").write_text(json.dumps(report, indent=2))
+    (RESULTS_DIR / "latest.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
     rows = report["rows"]
     keys = ["id", "category", "system", "route", "action", *METRIC_KEYS, "question", "answer"]
-    with open(RESULTS_DIR / "latest.csv", "w", newline="") as f:
+    with open(RESULTS_DIR / "latest.csv", "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=keys, extrasaction="ignore")
         w.writeheader()
         w.writerows(rows)
-    (RESULTS_DIR / "latest.md").write_text(to_markdown(report))
+    (RESULTS_DIR / "latest.md").write_text(to_markdown(report), encoding="utf-8")
     try:
         make_charts(report, RESULTS_DIR)
     except Exception as e:  # matplotlib optional
