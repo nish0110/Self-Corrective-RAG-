@@ -1,52 +1,311 @@
 [
-  {"id": "L1", "category": "local", "question": "What are the GPU booking limits for the Tensor-1 server in the AI lab?",
-   "gold_sources": ["aiml_lab_handbook.md"], "key_facts": ["a single booking is at most 8 hours", "each team can book at most 24 GPU-hours per week"]},
-  {"id": "L2", "category": "local", "question": "What are the three actions in Corrective RAG and when is each triggered?",
-   "gold_sources": ["corrective_rag.md"], "key_facts": ["Correct when a document scores above the upper threshold", "Incorrect when all documents score below the lower threshold and web search is used", "Ambiguous combines internal documents with web search"]},
-  {"id": "L3", "category": "local", "question": "How does the forward process work in DDPM diffusion models?",
-   "gold_sources": ["diffusion_models.md"], "key_facts": ["Gaussian noise is added over T steps", "T = 1000 steps", "the image becomes pure noise"]},
-  {"id": "L4", "category": "local", "question": "What does classifier-free guidance do in diffusion models?",
-   "gold_sources": ["diffusion_models.md"], "key_facts": ["trains with and without the conditioning by dropping the condition", "combines conditional and unconditional predictions with a guidance scale"]},
-  {"id": "L5", "category": "local", "question": "How was CLIP trained?",
-   "gold_sources": ["multimodal_models.md"], "key_facts": ["about 400 million image-caption pairs", "contrastive objective matching correct image-text pairs"]},
-  {"id": "L6", "category": "local", "question": "How does the HNSW index search for nearest neighbours?",
-   "gold_sources": ["vector_databases.md"], "key_facts": ["layers of proximity graphs", "search starts at the top layer and descends greedily"]},
-
-  {"id": "M1", "category": "missing", "question": "Who won the 2022 FIFA World Cup?", "gold_sources": [], "key_facts": ["Argentina"]},
-  {"id": "M2", "category": "missing", "question": "What is the capital city of Australia?", "gold_sources": [], "key_facts": ["Canberra"]},
-  {"id": "M3", "category": "missing", "question": "What is the boiling point of ethanol at sea level?", "gold_sources": [], "key_facts": ["about 78 degrees Celsius"]},
-  {"id": "M4", "category": "missing", "question": "Who directed the film Inception?", "gold_sources": [], "key_facts": ["Christopher Nolan"]},
-  {"id": "M5", "category": "missing", "question": "What is LoRA fine-tuning for large language models?", "gold_sources": [],
-   "key_facts": ["low-rank adaptation matrices are trained", "the pretrained weights are frozen"]},
-
-  {"id": "A1", "category": "ambiguous", "question": "lab gpu rules?", "gold_sources": ["aiml_lab_handbook.md"],
-   "key_facts": ["at most 8 hours per booking", "24 GPU-hours per week per team"]},
-  {"id": "A2", "category": "ambiguous", "question": "how do picture generators get rid of the noise?", "gold_sources": ["diffusion_models.md"],
-   "key_facts": ["reverse process removes noise step by step", "a network predicts the added noise"]},
-  {"id": "A3", "category": "ambiguous", "question": "the clip thing - how does it match pictures with text?", "gold_sources": ["multimodal_models.md"],
-   "key_facts": ["shared embedding space for images and text", "contrastive training"]},
-  {"id": "A4", "category": "ambiguous", "question": "crag web fallback when?", "gold_sources": ["corrective_rag.md"],
-   "key_facts": ["web search when retrieval is incorrect or ambiguous"]},
-  {"id": "A5", "category": "ambiguous", "question": "why do chatbots make stuff up?", "gold_sources": ["llm_hallucination.md"],
-   "key_facts": ["models predict plausible tokens rather than checking facts", "knowledge is frozen at training time"]},
-
-  {"id": "T1", "category": "time_sensitive", "question": "What are the latest features in the newest Python release?", "gold_sources": [],
-   "key_facts": ["must come from current web information about the newest Python version, not Python 3.12"]},
-  {"id": "T2", "category": "time_sensitive", "question": "What is the latest stable version of PyTorch?", "gold_sources": [],
-   "key_facts": ["must come from current web information"]},
-  {"id": "T3", "category": "time_sensitive", "question": "What are the latest changes in LangChain?", "gold_sources": [],
-   "key_facts": ["must come from current web information"]},
-  {"id": "T4", "category": "time_sensitive", "question": "What are the most recent Stable Diffusion models released?", "gold_sources": [],
-   "key_facts": ["must come from current web information"]},
-  {"id": "T5", "category": "time_sensitive", "question": "What is the current version of ChromaDB?", "gold_sources": [],
-   "key_facts": ["must come from current web information"]},
-
-  {"id": "D1", "category": "distractor", "question": "What new features were introduced in Python 3.13?", "gold_sources": [],
-   "key_facts": ["experimental free-threaded build without the GIL", "experimental JIT compiler", "new interactive interpreter"]},
-  {"id": "D2", "category": "distractor", "question": "What training objective does Stable Diffusion 3 use instead of the DDPM noise schedule?", "gold_sources": [],
-   "key_facts": ["rectified flow"]},
-  {"id": "D3", "category": "distractor", "question": "How do reflection tokens work in Self-RAG?", "gold_sources": [],
-   "key_facts": ["special tokens decide whether to retrieve", "the model critiques relevance and support of its own generations"]},
-  {"id": "D4", "category": "distractor", "question": "How does product quantization in FAISS IVF-PQ compress vectors?", "gold_sources": [],
-   "key_facts": ["vectors are split into sub-vectors", "each sub-vector is replaced by the id of its nearest centroid in a codebook"]}
+  {
+    "id": "L1",
+    "category": "local",
+    "question": "What are the GPU booking limits for the Tensor-1 server in the AI lab?",
+    "gold_sources": [
+      "aiml_lab_handbook.md"
+    ],
+    "key_facts": [
+      "a single booking is at most 8 hours",
+      "each team can book at most 24 GPU-hours per week"
+    ]
+  },
+  {
+    "id": "L2",
+    "category": "local",
+    "question": "What are the three actions in Corrective RAG and when is each triggered?",
+    "gold_sources": [
+      "corrective_rag.md"
+    ],
+    "key_facts": [
+      "Correct when a document scores above the upper threshold",
+      "Incorrect when all documents score below the lower threshold and web search is used",
+      "Ambiguous combines internal documents with web search"
+    ]
+  },
+  {
+    "id": "L3",
+    "category": "local",
+    "question": "How does the forward process work in DDPM diffusion models?",
+    "gold_sources": [
+      "diffusion_models.md"
+    ],
+    "key_facts": [
+      "Gaussian noise is added over T steps",
+      "T = 1000 steps",
+      "the image becomes pure noise"
+    ]
+  },
+  {
+    "id": "L4",
+    "category": "local",
+    "question": "What does classifier-free guidance do in diffusion models?",
+    "gold_sources": [
+      "diffusion_models.md"
+    ],
+    "key_facts": [
+      "trains with and without the conditioning by dropping the condition",
+      "combines conditional and unconditional predictions with a guidance scale"
+    ]
+  },
+  {
+    "id": "L5",
+    "category": "local",
+    "question": "How was CLIP trained?",
+    "gold_sources": [
+      "multimodal_models.md"
+    ],
+    "key_facts": [
+      "about 400 million image-caption pairs",
+      "contrastive objective matching correct image-text pairs"
+    ]
+  },
+  {
+    "id": "L6",
+    "category": "local",
+    "question": "How does the HNSW index search for nearest neighbours?",
+    "gold_sources": [
+      "vector_databases.md"
+    ],
+    "key_facts": [
+      "layers of proximity graphs",
+      "search starts at the top layer and descends greedily"
+    ]
+  },
+  {
+    "id": "M1",
+    "category": "missing",
+    "question": "Who won the 2022 FIFA World Cup?",
+    "gold_sources": [],
+    "key_facts": [
+      "Argentina"
+    ]
+  },
+  {
+    "id": "M2",
+    "category": "missing",
+    "question": "What is the capital city of Australia?",
+    "gold_sources": [],
+    "key_facts": [
+      "Canberra"
+    ]
+  },
+  {
+    "id": "M3",
+    "category": "missing",
+    "question": "What is the boiling point of ethanol at sea level?",
+    "gold_sources": [],
+    "key_facts": [
+      "about 78 degrees Celsius"
+    ]
+  },
+  {
+    "id": "M4",
+    "category": "missing",
+    "question": "Who directed the film Inception?",
+    "gold_sources": [],
+    "key_facts": [
+      "Christopher Nolan"
+    ]
+  },
+  {
+    "id": "M5",
+    "category": "missing",
+    "question": "What is LoRA fine-tuning for large language models?",
+    "gold_sources": [],
+    "key_facts": [
+      "low-rank adaptation matrices are trained",
+      "the pretrained weights are frozen"
+    ]
+  },
+  {
+    "id": "A1",
+    "category": "ambiguous",
+    "question": "lab gpu rules?",
+    "gold_sources": [
+      "aiml_lab_handbook.md"
+    ],
+    "key_facts": [
+      "at most 8 hours per booking",
+      "24 GPU-hours per week per team"
+    ]
+  },
+  {
+    "id": "A2",
+    "category": "ambiguous",
+    "question": "how do picture generators get rid of the noise?",
+    "gold_sources": [
+      "diffusion_models.md"
+    ],
+    "key_facts": [
+      "reverse process removes noise step by step",
+      "a network predicts the added noise"
+    ]
+  },
+  {
+    "id": "A3",
+    "category": "ambiguous",
+    "question": "the clip thing - how does it match pictures with text?",
+    "gold_sources": [
+      "multimodal_models.md"
+    ],
+    "key_facts": [
+      "shared embedding space for images and text",
+      "contrastive training"
+    ]
+  },
+  {
+    "id": "A4",
+    "category": "ambiguous",
+    "question": "crag web fallback when?",
+    "gold_sources": [
+      "corrective_rag.md"
+    ],
+    "key_facts": [
+      "web search when retrieval is incorrect or ambiguous"
+    ]
+  },
+  {
+    "id": "A5",
+    "category": "ambiguous",
+    "question": "why do chatbots make stuff up?",
+    "gold_sources": [
+      "llm_hallucination.md"
+    ],
+    "key_facts": [
+      "models predict plausible tokens rather than checking facts",
+      "knowledge is frozen at training time"
+    ]
+  },
+  {
+    "id": "T1",
+    "category": "time_sensitive",
+    "question": "What are the latest features in the newest Python release?",
+    "gold_sources": [],
+    "key_facts": [
+      "must come from current web information about the newest Python version, not Python 3.12"
+    ]
+  },
+  {
+    "id": "T2",
+    "category": "time_sensitive",
+    "question": "What is the latest stable version of PyTorch?",
+    "gold_sources": [],
+    "key_facts": [
+      "must come from current web information"
+    ]
+  },
+  {
+    "id": "T3",
+    "category": "time_sensitive",
+    "question": "What are the latest changes in LangChain?",
+    "gold_sources": [],
+    "key_facts": [
+      "must come from current web information"
+    ]
+  },
+  {
+    "id": "T4",
+    "category": "time_sensitive",
+    "question": "What are the most recent Stable Diffusion models released?",
+    "gold_sources": [],
+    "key_facts": [
+      "must come from current web information"
+    ]
+  },
+  {
+    "id": "T5",
+    "category": "time_sensitive",
+    "question": "What is the current version of ChromaDB?",
+    "gold_sources": [],
+    "key_facts": [
+      "must come from current web information"
+    ]
+  },
+  {
+    "id": "D1",
+    "category": "distractor",
+    "question": "What new features were introduced in Python 3.13?",
+    "gold_sources": [],
+    "key_facts": [
+      "experimental free-threaded build without the GIL",
+      "experimental JIT compiler",
+      "new interactive interpreter"
+    ]
+  },
+  {
+    "id": "D2",
+    "category": "distractor",
+    "question": "What training objective does Stable Diffusion 3 use instead of the DDPM noise schedule?",
+    "gold_sources": [],
+    "key_facts": [
+      "rectified flow"
+    ]
+  },
+  {
+    "id": "D3",
+    "category": "distractor",
+    "question": "How do reflection tokens work in Self-RAG?",
+    "gold_sources": [],
+    "key_facts": [
+      "special tokens decide whether to retrieve",
+      "the model critiques relevance and support of its own generations"
+    ]
+  },
+  {
+    "id": "D4",
+    "category": "distractor",
+    "question": "How does product quantization in FAISS IVF-PQ compress vectors?",
+    "gold_sources": [],
+    "key_facts": [
+      "vectors are split into sub-vectors",
+      "each sub-vector is replaced by the id of its nearest centroid in a codebook"
+    ]
+  },
+  {
+    "id": "L7",
+    "category": "local",
+    "question": "How many marks is Review 2 of the Prompt Engineering mini project worth and what does it cover?",
+    "gold_sources": [
+      "prompt_engineering_course_info.md"
+    ],
+    "key_facts": [
+      "15 marks",
+      "high level design and data collection"
+    ]
+  },
+  {
+    "id": "L8",
+    "category": "local",
+    "question": "Which route does our CRAG system use when the relevance score is below 0.3?",
+    "gold_sources": [
+      "crag_project_notes.md"
+    ],
+    "key_facts": [
+      "web route",
+      "retrieved documents are rejected"
+    ]
+  },
+  {
+    "id": "L9",
+    "category": "local",
+    "question": "How many students are in a mini project team and how long is the final report?",
+    "gold_sources": [
+      "prompt_engineering_course_info.md"
+    ],
+    "key_facts": [
+      "4 students",
+      "10 pages in IEEE format"
+    ]
+  },
+  {
+    "id": "T6",
+    "category": "time_sensitive",
+    "question": "What are the latest changes in LangChain?",
+    "gold_sources": [],
+    "key_facts": [
+      "answer should come from current web information, not the 2023 notes"
+    ]
+  }
 ]

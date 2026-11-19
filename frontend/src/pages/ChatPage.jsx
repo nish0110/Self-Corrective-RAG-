@@ -6,10 +6,10 @@ import { ActionBadge, AnswerText, DocCard, Metrics, NODE_LABEL, RouteBadge, Spin
 
 const EXAMPLES = [
   ["Local knowledge", "What are the GPU booking limits for the Tensor-1 server in the AI lab?", "Answered from your documents"],
+  ["Local knowledge", "Which route does our CRAG system use when the relevance score is below 0.3?", "Answered from your documents"],
   ["Missing knowledge", "Who won the 2022 FIFA World Cup?", "Not in documents → web"],
   ["Ambiguous", "how do picture generators get rid of the noise?", "Vague wording → rewrite"],
-  ["Time-sensitive", "What are the latest features in the newest Python release?", "Outdated docs → web"],
-  ["Distractor", "What new features were introduced in Python 3.13?", "Similar but wrong doc → web"],
+  ["Time-sensitive", "What are the latest changes in LangChain?", "Outdated docs → web"],
 ];
 
 /* ---------- live step pills ---------- */
