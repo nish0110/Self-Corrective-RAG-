@@ -193,7 +193,7 @@
     "question": "What is the latest stable version of PyTorch?",
     "gold_sources": [],
     "key_facts": [
-      "must come from current web information"
+      "The latest stable PyTorch release is 2.15.0"
     ]
   },
   {
@@ -220,7 +220,7 @@
     "question": "What is the current version of ChromaDB?",
     "gold_sources": [],
     "key_facts": [
-      "must come from current web information"
+      "The current ChromaDB version is 1.5.9"
     ]
   },
   {
